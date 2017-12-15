@@ -22,3 +22,31 @@ For each of these params:
   - `skip`: the offsite you want to skip.
 
 see `client/index.html` for a quick example.
+
+### DBA Handlers
+
+We uses simple KV database to store all the data and split them by date, PHP have
+DBA handlers enabled to get fast support for this kind of data storage.
+
+You can check all your handlers by using `dba_handlers()`, and we strongly recommend
+`tokyocarbinet` as the engine.
+
+You can change the default(`ndbm`) handler in `common.php`
+```php
+define('DBA_HANDLER', '<the handler type>');
+```
+
+### Authentications
+
+To make sure everyting works well, you need to implement `auth()` and `registered($id)`
+functions in `server/auth.php`. These two functions used for authenticating when add
+entry and check the report.
+
+To access report, you need provide a url param `auth_key`.
+
+### Changelog
+
+ - 2017-12-15
+   - First version
+   - Implement basic authentications
+   - Add support for customized dba handler type
