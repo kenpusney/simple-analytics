@@ -1,5 +1,13 @@
 <?php
 require_once("common.php");
+require_once("auth.php");
+
+$id = trim(getOrDefault("id", "unknown"));
+
+if (!registered($id)) {
+    error("Fobbidden", 403);
+    die;
+}
 
 $allowed = array(
     "REMOTE_ADDR", "REMOTE_PORT", 
@@ -12,7 +20,7 @@ $allowed = array(
 
 $source = dba_open("../data/". date("Y-m-d") .".db", "cl", "flatfile");
 $time = time();
-$key = $_GET["id"] . "/" . $time . "/" . uniqid();
+$key = $id . "/" . $time . "/" . uniqid();
 $data = json_encode(array("params"  => $_GET, 
         "details" => array_intersect_key($_SERVER, array_flip($allowed)),
         "time" => $time));

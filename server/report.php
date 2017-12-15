@@ -1,10 +1,16 @@
 <?php
 require_once("common.php");
+require_once("auth.php");
 
 $date = getOrDefault("date", date("Y-m-d"));
 $limit = getOrDefault("limit", 100);
 $skip = getOrDefault("skip", 0);
 $skipped = 0;
+
+if (!auth()) {
+    error("Unauthorized!", 401);
+    die;
+}
 
 $data = array();
 
