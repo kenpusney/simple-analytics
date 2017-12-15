@@ -1,5 +1,5 @@
 <?php
-require("common.php");
+require_once("common.php");
 $id = getOrDefault("id", "default");
 $host = $_SERVER["HTTP_HOST"];
 ?>
