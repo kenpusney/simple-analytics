@@ -14,7 +14,7 @@ if (!auth()) {
 
 $data = array();
 
-$source = dba_open("../data/". $date .".db", "rl", "flatfile");
+$source = dba_open("../data/". $date .".db", "rl", DBA_HANDLER);
 
 if ($source) {
 

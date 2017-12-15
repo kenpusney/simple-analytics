@@ -18,7 +18,7 @@ $allowed = array(
     "REQUEST_TIME_FLOAT", "REQUEST_TIME"
 );
 
-$source = dba_open("../data/". date("Y-m-d") .".db", "cl", "flatfile");
+$source = dba_open("../data/". date("Y-m-d") .".db", "cl", DBA_HANDLER);
 $time = time();
 $key = $id . "/" . $time . "/" . uniqid();
 $data = json_encode(array("params"  => $_GET, 
